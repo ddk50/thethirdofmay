@@ -23,7 +23,8 @@
   `(:databases ((:maindb :sqlite3 :database-name ":memory:"))))
 
 (defconfig |development|
-  '())
+  `(:debug T
+    :databases ((:maindb :sqlite3 :database-name ,(merge-pathnames #P"test.db" *application-root*)))))
 
 (defconfig |production|
   '())

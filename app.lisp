@@ -1,3 +1,5 @@
+(push (truename "/Users/kazushi/repos/thethirdofmay") asdf:*central-registry*)
+
 (ql:quickload :thethirdofmay)
 
 (defpackage thethirdofmay.app
