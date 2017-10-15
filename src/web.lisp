@@ -2,14 +2,17 @@
 (defpackage thethirdofmay.web
   (:use :cl
         :caveman2
+        :thethirdofmay.model
         :thethirdofmay.controller
         :thethirdofmay.config
         :thethirdofmay.view
         :thethirdofmay.db
         :datafly
         :split-sequence
+        :net.telent.date
+        :metatilities
         :sxql)
-  (:export :*web*))
+  (:export :*web* :params))
 (in-package :thethirdofmay.web)
 
 ;; for @route annotation
@@ -22,37 +25,82 @@
 (defvar *web* (make-instance '<web>))
 (clear-routing-rules *web*)
 
-
-;; (param '(("test" ("post" . "10") ("body" . "20"))
-;;                   ("blog" ("post" . "30") ("body" . "40"))) "blog" "body")
 (defun params (assoc-params &rest keys)
   (labels ((acc-param (_params _keys)
-             (cond ((null _keys) _params)
+             (cond ((null _keys)   _params)
                    ((atom _params) nil)
                    (t
                     (acc-param (cdr (assoc (car _keys) _params :test #'string=)) (cdr _keys))))))
     (acc-param assoc-params keys)))
-                
-(defun foobar (val &rest keys)
-  (if (null val)
-      val
-      (progn
-        (format t "~S ~S~%" val keys)
-        (foobar (cdr val) (cdr keys)))))
+
+(defun redirect-and-render-to (path url &optional env)
+  (setf (getf (response-headers *response*) :location) url)
+  (setf (response-status *response*) 302)
+  (render path env)
+  url)
+
+;; (defun set-flush (msg)
+;;   (setf (response-headers *response*) (append (response-headers *response*) (list :flush msg)))
 
 ;;
 ;; Routing rules
+;;
 (defroute "/" (&key _parsed)
-  (format t "~S" _parsed)
-;;  (root-index (param "blog" _parsed))
-  (render #P"index.html"))
+  (render #P"main.html"))
 
-(defroute "/test/*" (&key splat)
-  (format nil "<div style='font-size:.8em;'>~{~a<br>~%~}</div>"
-          (test)))
+(defun drafts-with-msg (msg)
+  (append (get-posts) (list :msg msg)))
 
-(defun foo (&rest values)
-  (format t "~a" values))
+;;
+;; drafts
+;;
+(defroute "/admin/techblog/index" (&key _parsed)
+  (render #P"admin/drafts.html" (get-posts)))
+
+(defroute ("/admin/techblog/post" :method :GET) (&key _parsed)
+  (render #P"admin/draftpost.html"))
+
+(defroute ("/admin/techblog/post" :method :POST) (&key _parsed)
+  (let ((caption (params _parsed "blog" "caption"))
+        (body    (params _parsed "blog" "body"))
+        (date    (params _parsed "blog" "date"))
+        (action  (params _parsed "blog" "action")))
+    (handler-case
+        (cond ((string= action "post")
+               (progn
+                 (add-post caption date body)
+                 (render #P"admin/drafts.html" (drafts-with-msg "POST OK"))))
+              ((string= action "preview") (render #P"admin/draftpost.html"))
+              (t (render #P"admin/draftpost.html")))
+      (invalid-date-error (condition)
+        (render #P"admin/draftpost.html" (list :msg "invalid date error ~S" date))))))
+
+(defroute ("/admin/techblog/:id/delete" :method :POST) (&key id)
+  (delete-post id)
+  (render #P"admin/drafts.html" (drafts-with-msg (format nil "記事: ~D IS DELETED" id))))
+
+(defroute ("/admin/techblog/:id/edit" :method :POST) (&rest _parsed)
+  (let* ((_params (getf _parsed :_PARSED))
+         (caption (params _params "blog" "caption"))
+         (body    (params _params "blog" "body"))
+         (date    (params _params "blog" "date"))
+         (action  (params _params "blog" "action"))
+         (id      (params _params "blog" "id")))
+    (handler-case
+        (progn
+          (update-post id caption body date)
+          (render #P"admin/drafts.html" (drafts-with-msg (format nil "記事: ~D is UPDATED" id))))      
+      (invalid-date-error (condition)
+        (render #P"admin/drafts.html" (drafts-with-msg (format nil "invalid date error ~A" date)))))))
+    
+(defroute ("/admin/techblog/:id" :method :GET) (&key id)
+  (render #P"admin/draftedit.html" (find-by-id-from-posts id)))
+
+;;
+;; login
+;;
+(defroute "/admin/login" (&key _parsed)
+  (render #P"admin/login.html"))
 
 ;;
 ;; Error pages
@@ -60,3 +108,4 @@
   (declare (ignore app))
   (merge-pathnames #P"_errors/404.html"
                    *template-directory*))
+

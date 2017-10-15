@@ -1,0 +1,61 @@
+{% extends "layouts/default.html" %}
+{% block title %}The Third of May 2017{% endblock %}
+{% block content %}
+
+<div id="content">
+  <h1>The Third of May 2017</h1>
+  
+  <ul id="menu">
+    <li><a href="#">home</a></li>
+    <li><a href="#">doujin</a></li>
+    <li><a href="#">daily drawings</a></li>
+    <li><a href="#">photos</a></li>
+    <li><a href="#">tech blog</a></li>
+    <li><a href="#">contact</a></li>
+  </ul>
+  
+  <div id="blog-wrapper">
+    <div id="blogbody">
+      <h2>Bitcoinのウソホント</h2>
+      <h4>Sunday, 31. July 2009</h4>
+      <p>
+        <span class="meta">Posted in the Category: <a href="#">Webdesign</a>, <a href="#">Graphicdesign</a>, <a href="#">Webdevelopment</a><br>
+          <br>
+          <a href="#">423 Comments</a><br>
+          Readed: 1215<br>
+          Today: 532
+        </span>        
+        BitCoin，というか貨幣でそれができない（と言うかやる意味が無い）のは，貨幣というものはそれ自体に価値がないからです．貨幣というものはそれ自体を眺めて楽しむものではありません．貨幣というものは誰か他の人に譲渡できて初めて価値が生じるものです．ぶっちゃけると，BitCoinだっていくらでも複製は作れるんです．勝手に自分でBitCoinを増やすことはいくらでもできます．ただ作っても，それを誰か（BitCoinネットワークに参加している多くの人々）に渡す際に「君は過去，このCoinを誰々に渡してるよね？コピーしてるね？不正してるね？」と拒否されるからやる意味が無いという話です．BitCoinのコピーをつくって自分のWallet内のCoinの数が増えても，それを誰かに渡せなければ全く意味がないのでやる価値がないというだけの話です．
+      </p>
+      <p>
+          繰り返しますが，BitCoinのアルゴリズムでできるのは，ある人Aがある人Bに何かを渡したという合意をみんなで監視して保証するということだけです．トランザクションが完了した後に，オリジナルのデータが復元不可能なレベルで破棄されるとうアルゴリズムではありません．そしてこれをやらなくてもいいのは，貨幣という極めて特殊な存在，つまり，他人に渡せて初めて効力，価値を発揮し，単に自分が所持しているだけでは価値がないという媒体であるからこそこのアルゴリズムで良いのであって，コンテンツ自体に価値がある，デジタル書籍，音楽などにこのアルゴリズムを応用しても全く意味がありません．誰かに譲渡したとしても，オリジナルもコピーしておいて，システム外で配布して各々それを楽しめばいいだけの話です．過去にそれが誰かに譲渡されているということがわかったところでそれがどうだというのでしょう？貨幣とは異なり，譲渡されている事実がわかったところで音楽や書籍の本質的価値が損なわれることは全くないのですから，いくらでもコピーして楽しめます．そしてBitCoinのアルゴリズムはそれを防げません．
+      </p>
+      <p>
+          コンテンツ自体に価値があるものに対して，コンテンツ管理を行うためには，やはり，ある人Aがある人Bに何かを渡した後，Aが持っているデータが復元不可能なレベルで破棄されるという機構が絶対に必要です．そしてこれは現在のデジタルコピーの機構において根本的に不可能です*1．コンテンツに対して暗号をかけておいてもある瞬間にはその暗号化を絶対に解除するわけですから（そうしないとそのコンテンツを使えませんからね）その時点でコピーされたら終わりです．ハードウェア的な機構で暗号化をかけたままCPUで実行できるような仕組みがあればいいような気もしますが，破るのが幾分困難になるだけですし，また現実的ではないですね．そんな特殊なハードウェアを今から普及させてデファクトを取るのは不可能でしょう．
+      </p>
+      <p>
+        BitCoinのアルゴリズムはなかなかすごくて，天才的だと思うんですけども，貨幣以外に応用するのは極めて難しいというのが私の考えです．貨幣という，トランザクションがあってこそ価値があるというものは他にはないんじゃないでしょうか？音楽は誰かに音楽データを再譲渡できなくても，それ自体に価値があるー楽しめますし，これは書籍でも同様です．BitCoinのアルゴリズムは技術的に面白いと思いますが，応用範囲はかなり限定的だと思います．
+      </p>
+      <blockquote> "Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et <a href="#">accumsan et iusto</a> odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat." </blockquote>
+      <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation <a href="#">ullamcorper suscipit</a> lobortis nisl ut aliquip ex ea commodo consequat. <strong>Duis autem vel eum iriure</strong> dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. </p>
+      <p> <a href="blog.html">Write a Comment</a> (423 existing) → </p>      
+    </div>
+    <div id="sidebar">
+      <ul id="cats">
+        <li class="h2">Categories</li>
+        <li>• <a href="#">Blogging</a> (14)</li>
+        <li>• <a href="#">Typography</a> (29)</li>
+        <li>• <a href="#">Graphicdesign</a> (94)</li>
+        <li>• <a href="#">Webdesign</a> (156)</li>
+        <li>• <a href="#">Apple</a> (32)</li>
+        <li>• <a href="#">Android</a> (5)</li>
+        <li>• <a href="#">Freebies</a> (47)</li>
+        <li>• <a href="#">Books</a> (24)</li>
+        <li>• <a href="#">Contests</a> (76)</li>
+        <li>• <a href="#">Products</a> (38)</li>
+      </ul>
+    </div>
+  </div>  
+</div>
+
+{% endblock %}

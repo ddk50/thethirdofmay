@@ -3,8 +3,6 @@
   (:use :cl)
   (:import-from :thethirdofmay.config
                 :*template-directory*)
-  (:import-from :thethirdofmay.controller
-                :hello-world)
   (:import-from :caveman2
                 :*response*
                 :response-headers)

@@ -13,6 +13,8 @@
                :envy
                :cl-ppcre
                :uiop
+               ;; markdown engine
+               :cl-markdown
 
                ;; for @route annotation
                :cl-syntax-annot
@@ -20,12 +22,18 @@
                ;; HTML Template
                :djula
 
+               ;; date parsing
+               :net-telent-date               
+               :metatilities
+
                ;; for DB
                :datafly
                :sxql)
   :components ((:module "src"
                 :components
-                ((:file "controller" :depends-on ("config" "db"))
+                ((:file "model" :depends-on ("config" "db"))
+                 (:file "controller" :depends-on ("config" "db"))
+                 (:file "techblog_controller" :depends-on ("config" "db"))
                  (:file "main" :depends-on ("config" "view" "db"))
                  (:file "web" :depends-on ("view"))
                  (:file "view" :depends-on ("config"))

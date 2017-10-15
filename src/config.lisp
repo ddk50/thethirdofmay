@@ -24,13 +24,16 @@
 
 (defconfig |development|
   `(:debug T
-    :databases ((:maindb :sqlite3 :database-name ,(merge-pathnames #P"test.db" *application-root*)))))
+    :databases ((:maindb :sqlite3 :database-name ,(merge-pathnames #P"development.db" *application-root*)))))
 
 (defconfig |production|
-  '())
+  `(:debug T
+    :databases ((:maindb :sqlite3 :database-name ,(merge-pathnames #P"production.db" *application-root*)))))
 
 (defconfig |test|
-  '())
+  `(:debug T
+    :databases ((:maindb :sqlite3 :database-name ,(merge-pathnames #P"test.db" *application-root*)))))
+
 
 (defun config (&optional key)
   (envy:config #.(package-name *package*) key))

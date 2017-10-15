@@ -1,0 +1,13 @@
+{% extends "layouts/default.html" %}
+{% block title %}The Third of May 2017{% endblock %}
+{% block content %}
+  
+  <div id="main">
+    <ul>
+      {% for d in drafts %}
+        <li>{{ d.caption }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layouts/default.html" %}
+{% block title %}The Third of May 2017{% endblock %}
+{% block content %}
+
+  <div id="content">
+    <h1>The Third of May 2017</h1>
+    <div id="blog-edit">
+      <form>
+        <label>Title: </label>
+        <input name="blog[title]" class="margin10">
+        <label>Date: </label>
+        <input name="blog[date]" class="margin10">
+        <label>Body: </label>
+        <textarea name="blog[body]" class="form-control default-textarea margin10" tabindex="5"></textarea>
+        <button type="submit" name="action" value="post" class="btn btn-default margin1010 right">POST</button>
+        <button type="submit" name="action" value="send" class="btn btn-default margin10">プレビュー</button>
+        <button type="submit" name="action" value="save" class="btn btn-default margin10">下書き保存</button>
+      </form>
+    </div>
+  </div>
+  
+{% endblock %}

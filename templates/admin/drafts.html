@@ -1,0 +1,53 @@
+{% extends "layouts/admin.html" %}
+{% block title %}The Third of May 2017{% endblock %}
+{% block content %}
+  
+  <div class="container">
+    <div class="row">           
+      <div class="col-md-12">
+        {% if msg  %}
+          <div class="oaerror warning">
+            <strong>Msg</strong> - {{ msg }}
+          </div>
+        {% endif %}
+        
+        <h4>Drafts</h4>
+        <input type="button" class="btn btn-primary" onclick="location.href='/admin/techblog/post'" value="新しい記事を作る">
+        <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <th><input type="checkbox" id="checkall" /></th>
+              <th>caption</th>
+              <th>body</th>
+              <th>date</th>
+              <th>published</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </thead>
+            <tbody>
+              
+              {% for p in posts %}
+                <tr>                  
+                  <td><input type="checkbox" class="checkthis" /></td>
+                  <td>{{ p.caption }}</td>
+                  <td>{{ p.body }}</td>
+                  <td>{{ p.updated-at }}</td>
+                  <td>{{ p.published }}</td>
+                  <form action="/admin/techblog/{{ p.id }}">
+                    <td><p><button type="submit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                  </form>
+
+                  <form action="/admin/techblog/{{ p.id }}/delete" method="post">
+                    <td><p><button type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                  </form>
+                </tr>
+              {% endfor %}
+
+          </table>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+{% endblock %}

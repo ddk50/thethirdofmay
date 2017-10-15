@@ -1,36 +1,636 @@
 @charset "UTF-8";
 
 body {
-    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    font: .8em Georgia, "Times New Roman", Times, Serif, "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+    background: #fff; color: #777;
 }
 
-a:link {
-    color: #005585;
-    text-decoration: none;
-}
-a:visited {
-    color: #485270;
-}
-a:hover {
-    color: #b83800;
-    text-decoration: underline;
-}
-
-#main {
-    text-align: center;
-}
-
-.square_btn {
+/* ボタン類 */
+.btn {
     display: inline-block;
-    padding: 0.3em 1em;
-    text-decoration: none;
-    color: #565656;
-    border: solid 2px #b3b3b3;
-    border-radius: 3px;
-    transition: .4s;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
 }
 
-.square_btn:hover {
-    background: #565656;
-    color: white;
+.btn-default {
+    color: #777;
+    background-color: #fff;
+    border-color: #ccc;
 }
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {    
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+textarea {
+    -webkit-appearance: textarea;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    flex-direction: column;
+    resize: auto;
+    cursor: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-width: 1px;
+    border-style: solid;
+    border-color: initial;
+    border-image: initial;
+    padding: 2px;
+}
+
+.default-textarea {
+    display: block;
+    width: 100%;
+    height: 900px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; /* Firefox */
+    -webkit-box-sizing: border-box; /* Chrome, Safari */    
+}
+
+/* ここから追加 */
+* { margin: 0; padding: 0; list-style-type: none; }
+
+.margin10 { margin: 0 0 10px 0; }
+.margin1010 { margin: 0 0 10px 10px; }
+
+a { color: #D40000; text-decoration: none; }
+a:hover { color: #8F0000; }
+p { line-height: 1.7em; margin: 0 0 15px; }
+.x { clear: both; }
+
+h1 { float: left; font-size: 2em; font-weight: normal; font-style: italic; padding: 0 0 25px 10px; margin: 0 0 10px; }
+h2 { font-weight: normal; font-size: 2.6em; padding: 0 0 10px; margin: 0 0 15px; }
+h3 { font-size: 1.7em; font-weight: normal; margin: 0 0 20px; }
+h3 a { color: #222; }
+
+#content { width: 960px; margin: 40px auto; }
+
+#menu { float: right; margin: 10px 10px 0 0; }
+#menu li { display: inline; list-style: none; }
+#menu li a { float: left; margin: 0 0 0 20px; color: #888; }
+#menu li a:hover { color: #555; }
+
+.header-box { clear: both; height: 266px; padding: 0px 0px; margin: 30px 0 0; }
+
+.header-box .colorbox-top { clear: both; }
+.header-box .colorbox-top .left { float: left; width: 40%; border-top: 1px solid #c32d00; }
+.header-box .colorbox-top .right { float: right; width: 60%; border-top: 1px solid #ffffff; }
+
+.header-box .colorbox-middle { clear: both; width: 100%; height: 100% }
+.header-box .colorbox-middle .left { float: left; }
+.header-box .colorbox-middle .left .details { clear: both; width: 250px; padding: 20px 30px 0 10px; }
+.header-box .colorbox-middle .middle { float: left; width: 1px; height: 100%; border-left: 1px solid #c32d00; }
+.header-box .colorbox-middle .right { float: right; }
+.header-box .colorbox-middle .right .body { width: 620px; }
+.header-box .colorbox-middle .right .body p { clear: both; padding: 30px 60px 0 0; }
+
+.header-box .colorbox-bottom { clear: both; }
+.header-box .colorbox-bottom .left { float: left; width: 25%; border-bottom: 1px solid #ffffff; }
+.header-box .colorbox-bottom .right { float: right; width: 75%; border-bottom: 1px solid #c32d00; }
+
+.post { clear: both; padding: 30px 10px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin: 0 0 40px; }
+.post .details { float: left; width: 250px; }
+.post .details .info { font-size: .9em; color: #999; }
+.post .details .info a { color: #777; border-bottom: 1px dotted #999; padding: 3px 1px; }
+.post .body { float: right; width: 618px; padding: 0 0 0 30px; border-left: 1px solid #ddd; }
+
+.maincontents { clear: both; height: 500px; }
+.maincontents .left { float: right; width: 70%; padding: 40px 0 0; }
+.maincontents .left .col {
+    width: 250px;          /* 横幅を固定して */
+    display: inline-block; /* インラインブロック化 */
+    vertical-align: top;   /* 上端を揃える */
+    margin: 0 40px 30px 0;
+    float: right;
+    font-size: .9em;
+}
+.maincontents .middle { float: right; height: 100%; border-left: 1px solid #c32d00; }
+.maincontents .right { float: right; height: 100%; width: 50px; }
+
+.maincontents .right .col.last { margin-right: 0; }
+
+#footer { clear: both; border-top: 1px solid #ddd; padding: 20px 0; font-size: .9em; color: #999; }
+
+#blog-wrapper {
+    clear: both;
+    background: #fff;
+    margin: 0 auto;
+}
+
+#blog-wrapper #blogbody {
+    float: left;
+    clear: both;
+    width: 600px;
+    padding: 0 50px 0 0;
+    border-right: 2px dotted #eee;
+}
+
+#blog-wrapper #blogbody h4 {
+    float: left;
+    clear: both;
+    font: italic normal 13px/18px Georgia, "Times New Roman", Times, serif, "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: #aaa;
+    margin: 0 0 10px 0;
+}
+
+#blog-wrapper #blogbody p {
+    line-height: 2.0em;
+    margin: 0 0 15px;
+    float: left;
+    padding: 10px 0;
+    font-size: 1.1em;
+}
+
+#blog-wrapper #blogbody .initial {
+    float: left;
+    width: auto;
+    clear: none;
+    font-size: 100px;
+    line-height: 39px;
+    padding: 0;
+    margin: 0 5px 10px 0;
+    color: #333;
+}
+
+#blog-wrapper #blogbody .meta, #blog-wrapper #blogbody .autor {
+    width: 100px;
+    float: right;
+    clear: none;
+    text-align: left;
+    border-left: 1px solid #555;
+    font-size: 11px;
+    line-height: 20px;
+    padding: 0 0 0 10px;
+    margin: 0 0 20px 20px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#blog-wrapper #blogbody .autor {
+    width: 50px;
+    height: 50px;
+}
+
+
+#blog-wrapper #blogbody blockquote {
+    float: left;
+    clear: both;
+    width: 475px;
+    padding: 0 0 0 10px;
+    text-align:justify;
+    color: #999;
+    margin: 10px 0 10px 30px;
+    border-left: 5px solid #333;
+    font-family:Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+#blog-wrapper #blogbody .more-articles {
+    float: left;
+    clear: both;
+    width: 520px;
+    border-top:2px dotted #eee;
+    margin: 40px 0 0 0;
+    padding: 20px 0 0 0;
+}
+
+#blog-wrapper #blogbody .more-articles li {
+    float: left;
+    width: 520px;
+    margin: 10px 0 30px 0;
+}
+
+#blog-wrapper #blogbody .more-articles li.right {
+    float: right;
+}
+
+#blog-wrapper #blogbody .more-articles li h2 {
+    font-size: 25px;
+    line-height: 40px;
+    margin: 0 0 5px 0;
+}
+
+/* __Comments */
+
+#blog-wrapper #blogbody .comments {
+    float: left;
+    clear: both;
+    width: 520px;
+    border-top:2px dotted #eee;
+    margin: 40px 0 0 0;
+    padding: 20px 0 0 0;
+}
+
+#blog-wrapper #blogbody .comments li {
+    float: left;
+    width: 520px;
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+    border-bottom: 1px dotted #aaa;
+}
+
+#blog-wrapper #blogbody .comments li.admin {
+    width: 480px;
+    padding: 15px;
+    border: 5px solid #d40000;
+    background: #fefefe;
+}
+
+#blog-wrapper #blogbody .comments li.admin p {
+    width: 480px;
+}
+
+#blog-wrapper #blogbody .comments li.form {
+    width: 490px;
+    padding: 15px;
+    background: #000;
+    color: #fff;
+    float: left;
+}
+
+#blog-wrapper #blogbody .comments li.form label, #blog-wrapper #blogbody .comments li.form input, #blog-wrapper #blogbody .comments li.form textarea {
+    float: left;
+    clear: both;
+    margin: 0 0 5px 0;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+#blog-wrapper #blogbody .comments li.form input, #blog-wrapper #blogbody .comments li.form textarea {
+    background: #eee;
+    border: 5px solid #666;
+    padding: 5px;
+    width: 200px;
+    float: left;
+    clear: both;
+}
+
+#blog-wrapper #blogbody .comments li.form textarea {
+    width: 460px;
+    float: left;
+    clear: both;
+}
+
+#blog-wrapper #blogbody .comments li.form input.button {
+    background: #d40000;
+    border: 5px solid #d40000;
+    padding: 5px;
+    float: left;
+    clear: both;
+    cursor: pointer;
+    color: #fff;
+    margin: 10px 0 0 0;
+    font-weight: bold;
+}
+
+#blog-wrapper #blogbody .comments li.form input.button:hover {
+    background: #b40000;
+}
+
+#blog-wrapper #blogbody .comments li.form input:focus, #blog-wrapper #blogbody .comments li.form textarea:focus {
+    background: #fff;
+    border: 5px solid #eee;
+}
+
+#blog-wrapper #blogbody .comments li.headline {
+    border-bottom:none;
+}
+
+#blog-wrapper #blogbody .comments li h2 {
+    font-size: 25px;
+    line-height: 40px;
+    margin: 0 0 5px 0;
+    float: left;
+}
+
+#blog-wrapper #blogbody .comments li h3 {
+    font-size: 18px;
+    font-weight: normal;
+    margin: 20px 0 5px 0;
+    float: left;
+}
+
+
+/* __ Portfolio */
+
+ul#portfolio, ul#portfolio-detail {
+    float: left;
+    clear: both;
+    width: 940px;
+}
+
+ul#portfolio li, ul#portfolio-detail li {
+    float: left;
+    width: 440px;
+    margin: 0 0 20px 20px;
+    padding: 0 0 10px 0;
+    border: none;
+    border-bottom: 1px dotted #aaa;
+}
+
+ul#portfolio-detail li {
+    width: 900px;
+}
+
+ul#portfolio-detail li .textbox {
+    width: 280px;
+    margin: 10px;
+    float: left;
+}
+
+ul#portfolio-detail li .textbox h3 {
+    width: 280px;
+    float: left;
+    font:normal 18px/25px Georgia, "Times New Roman", Times, serif;
+    color: #000;
+    margin: 0 0 15px 0;
+}
+
+ul#portfolio-detail li .textbox p {
+    width: 280px;
+    float: left;
+    padding:0 0 10px 0;
+}
+
+ul#portfolio-detail li .textbox p .green {
+    color: #62be00;
+}
+
+
+
+
+ul#portfolio li a, ul#portfolio li a:hover {
+    border:none;
+    margin: 0;
+    padding: 0;
+}
+
+ul#portfolio li a img, ul#portfolio-detail li img {
+    border: 9px solid #ddd;
+    padding: 1px;
+    margin: 0 0  10px 0;
+}
+
+
+ul#portfolio li a:hover img {
+    border: 9px solid #d40000;
+}
+
+ul#portfolio li h2, ul#portfolio-detail li h2  {
+    float: left;
+    clear: both;
+    font:normal 30px/45px Georgia, "Times New Roman", Times, serif;
+    width: 100%;
+    text-align: center;
+    border-bottom: 4px double #000;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+ul#portfolio-detail li h2  {
+    width: 900px;
+}
+
+/* __ About */
+
+
+ul#about {
+    float: left;
+    clear: both;
+    width: 940px;
+}
+
+ul#about li {
+    float: left;
+    width: 287px;
+    margin: 0 0 20px 20px;
+    padding: 0 0 10px 0;
+    border: none;
+}
+
+ul#about li h2  {
+    float: left;
+    clear: both;
+    font:normal 30px/45px Georgia, "Times New Roman", Times, serif;
+    width: 100%;
+    text-align: center;
+    border-bottom: 4px double #000;
+    color: #333;
+    margin: 0 0 11px 0;
+}
+
+/* __ Sidebar */
+#blog-wrapper #sidebar {
+    float: right;
+    width: 250px;
+    margin: 10px 20px 0 0;
+}
+
+#blog-wrapper #sidebar #cats, #blog-wrapper #sidebar #tags, #blog-wrapper #blog-wrapper #sidebar #latest-work, #blog-wrapper #sidebar #articles {
+    float: left;
+    width: 130px;
+    padding: 10px 0;
+    border-bottom: 1px dotted #aaa;
+}
+
+#blog-wrapper #sidebar #latest-work, #blog-wrapper #sidebar #articles {
+    width: 280px;
+}
+
+#blog-wrapper #sidebar #articles {
+    border: none;
+}
+
+#blog-wrapper #sidebar #tags {
+    float: right;
+}
+
+#blog-wrapper #sidebar #cats li,
+#blog-wrapper #sidebar #tags li,
+#blog-wrapper #sidebar #latest-work li,
+#blog-wrapper #sidebar #articles li {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin: 0 0 7px 0;
+}
+
+#blog-wrapper #sidebar #cats li a, #blog-wrapper #sidebar #tags li a, #blog-wrapper #sidebar #latest-work li a, #blog-wrapper #sidebar #articles li a {
+    font-size: 13px;
+}
+
+#blog-wrapper #sidebar #latest-work li a, #blog-wrapper #sidebar #latest-work li a img {
+    border: none;
+}
+
+#blog-wrapper #sidebar #latest-work li a {
+    position: relative;
+    display: block;
+}
+
+#blog-wrapper #sidebar #latest-work li a span {
+    position: absolute;
+    display: none;
+}
+
+#blog-wrapper #sidebar #latest-work li a:hover span {
+    background: #fff;
+    color: #000;
+    padding:2px 5px;
+    font:normal 11px/11px Arial, Helvetica, sans-serif;
+    right: 5px;
+    top: 60px;
+    position: absolute;
+    display: block;
+}
+
+#blog-wrapper #sidebar h2, #blog-wrapper #blogbody h2, #blog-wrapper #sidebar #cats li.h2, #blog-wrapper #sidebar #tags li.h2, #blog-wrapper #sidebar #latest-work li.h2 {
+    float: left;
+    clear: both;
+    font:normal 30px/45px Georgia, "Times New Roman", Times, serif;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #c32d00;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+#blog-wrapper #sidebar #cats li.h2, #blog-wrapper #sidebar #tags li.h2, #blog-wrapper #sidebar #latest-work li.h2  {
+    font:normal 20px/35px Georgia, "Times New Roman", Times, serif;
+}
+
+#blog-wrapper #sidebar #articles li.h3 {
+    float: left;
+    clear: both;
+    font:bold 15px/22px Georgia, "Times New Roman", Times, serif;
+    width: 100%;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+#blog-wrapper #sidebar #articles li.h3 span {
+    font:normal 15px/22px Georgia, "Times New Roman", Times, serif;
+    color: #aaa;
+}
+
+
+#blog-wrapper #sidebar h3 {
+    float: left;
+    clear: both;
+    font:bold 15px/22px Georgia, "Times New Roman", Times, serif;
+    width: 100%;
+    text-align: left;
+    color: #333;
+    margin: 10px 0 0 0;
+}
+
+#blog-wrapper #sidebar p {
+    float: left;
+    clear: both;
+    font:italic normal  15px/22px italic Georgia, "Times New Roman", Times, serif;
+    width: 100%;
+    padding:0 0 10px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px dotted #aaa;
+    color: #777;
+}
+
+#blog-edit form {
+    width: 900px;
+    clear: both;
+    padding: 15px;
+    border: 1px dotted #aaa;
+    color: #fff;    
+}
+
+#blog-edit label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #777;
+}
+
+#blog-edit input {
+    width: 100%;
+    font-size: 18px;
+    color: #777;    
+}
+
+#blog-edit .left {
+    float: left;
+}
+
+#blog-edit .right {
+    float: right;
+}
+
+#blog-edit .date-picker {
+    width: 30%;
+}
+/* __ Footer */
+
+
+/* #footer { */
+/*     float: left; */
+/*     clear: both; */
+/*     color: #fff; */
+/*     margin: 50px 0 0 20px; */
+/* } */
+
+/* #footer p { */
+/*     background: #000; */
+/*     padding: 2px 5px; */
+/*     width: auto; */
+/*     float: left; */
+/*     display: inline; */
+/*     clear: both; */
+/*     margin: 0 0 1px 0; */
+/* } */
+
+/* #footer p.big { */
+/*     font-size: 25px; */
+/*     font-family:Arial, Helvetica, sans-serif; */
+/*     padding: 4px 5px; */
+/* } */
+
+/* #footer p a { */
+/*     color: #fff; */
+/*     border-bottom: 2px solid #d40000; */
+/*     font-weight: bold; */
+/* } */
+
+/* #footer p a:hover { */
+/*     background: #d40000; */
+/*     border-bottom:2px solid #d40000; */
+/* } */

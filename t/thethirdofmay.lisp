@@ -7,6 +7,9 @@
 
 (plan nil)
 
-;; blah blah blah.
+
+;; パースできる
+(is (param '(("test" ("post" . "10") ("body" . "20"))
+             ("blog" ("post" . "30") ("body" . "40"))) "blog" "body") 40)
 
 (finalize)
