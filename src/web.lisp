@@ -33,29 +33,28 @@
                     (acc-param (cdr (assoc (car _keys) _params :test #'string=)) (cdr _keys))))))
     (acc-param assoc-params keys)))
 
-(defun redirect-and-render-to (path url &optional env)
-  (setf (getf (response-headers *response*) :location) url)
-  (setf (response-status *response*) 302)
-  (render path env)
-  url)
-
 ;; (defun set-flush (msg)
 ;;   (setf (response-headers *response*) (append (response-headers *response*) (list :flush msg)))
 
 ;;
-;; Routing rules
+;; Non-authorized area
 ;;
 (defroute "/" (&key _parsed)
   (render #P"main.html"))
+
+(defroute "/techblog/:id" (&key id)
+  (render #P"techblog.html" (find-by-id-from-posts (parse-integer id))))
 
 (defun drafts-with-msg (msg)
   (append (get-posts) (list :msg msg)))
 
 ;;
-;; drafts
+;; Authorized area
 ;;
 (defroute "/admin/techblog/index" (&key _parsed)
-  (render #P"admin/drafts.html" (get-posts)))
+  (let ((plist (get-posts)))
+    (if plist
+        (render #P"admin/drafts.html" plist))))
 
 (defroute ("/admin/techblog/post" :method :GET) (&key _parsed)
   (render #P"admin/draftpost.html"))

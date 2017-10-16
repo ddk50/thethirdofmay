@@ -17,6 +17,7 @@
           <table id="mytable" class="table table-bordred table-striped">
             <thead>
               <th><input type="checkbox" id="checkall" /></th>
+              <th>id</th>
               <th>caption</th>
               <th>body</th>
               <th>date</th>
@@ -29,6 +30,7 @@
               {% for p in posts %}
                 <tr>                  
                   <td><input type="checkbox" class="checkthis" /></td>
+                  <td>{{ p.id }}</td>
                   <td>{{ p.caption }}</td>
                   <td>{{ p.body }}</td>
                   <td>{{ p.updated-at }}</td>

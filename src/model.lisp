@@ -7,6 +7,7 @@
         :datafly
         :net.telent.date
         :metatilities
+        :cl-markdown
         :split-sequence
         :sxql)
   (:export :add-post
@@ -27,6 +28,15 @@
      (format nil "~%invalid date format: ~S~%"
              (error-arg-of condition)))))
 
+
+(define-condition nosuch-article--error (error)
+  ((arg :initarg :arg
+        :accessor error-arg-of))
+  (:report
+   (lambda (condition stream)
+     (format nil "~%nosuch article: ~S~%"
+             (error-arg-of condition)))))
+
 (defmodel (posts (:inflate updated-at #'(lambda (x) (format-date "%Y/%m/%d %H:%M" x)))
                  (:inflate created-at #'(lambda (x) (format-date "%Y/%m/%d %H:%M" x)))
                  (:inflate published #'(lambda (x) (if (string= x "f") nil t))))  
@@ -38,16 +48,20 @@
   created-at
   updated-at)
 
+(defun compile-md (body)
+  (nth-value 1 (markdown:markdown body :stream nil)))
+
 (defun add-post (caption date body)
   (let ((parsed-date (net.telent.date:parse-time date)))
     (if parsed-date
         (with-connection (db)
           (retrieve-all
            (insert-into :posts
-                        (set= :caption     caption
-                              :body        body
-                              :created_at  parsed-date
-                              :updated_at  parsed-date))
+                        (set= :caption       caption
+                              :body          body
+                              :compiled_body (compile-md body)
+                              :created_at    parsed-date
+                              :updated_at    parsed-date))
            :as 'posts))
         (error (make-condition 'invalid-date-error :arg date)))))
 
@@ -64,7 +78,7 @@
     (list :id             (posts-id x)
           :caption        (posts-caption x)
           :body           (posts-body x)
-          :compiled-body  (posts-compiled-body x)
+          :compiled_body  (posts-compiled-body x)
           :published      (posts-published x)
           :created-at     (posts-created-at x)
           :updated-at     (posts-updated-at x))))
@@ -72,14 +86,15 @@
 (defun update-post (id caption body date)
   (let ((parsed-date (net.telent.date:parse-time date))
         (parsed-id   (parse-integer id)))
-    (if parsed-date
+    (if (and parsed-date parsed-id)
         (with-connection (db)
           (execute
            (update :posts
-                   (set= :id         parsed-id
-                         :updated_at parsed-date
-                         :caption    caption
-                         :body       body)
+                   (set= :id            parsed-id
+                         :updated_at    parsed-date
+                         :caption       caption
+                         :body          body
+                         :compiled_body (compile-md body))
                    (where (:= :id id)))))
         (error (make-condition 'invalid-date-error :arg date)))))
 
@@ -102,7 +117,7 @@
                            (list :id             (posts-id x)
                                  :caption        (posts-caption x)
                                  :body           (posts-body x)
-                                 :compiled-body  (posts-compiled-body x)
+                                 :compiled_body  (posts-compiled-body x)
                                  :published      (posts-published x)
                                  :created-at     (posts-created-at x)
                                  :updated-at     (posts-updated-at x)))
