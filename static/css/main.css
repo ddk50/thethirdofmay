@@ -149,15 +149,12 @@ h3 a { color: #222; }
 
 #blog-wrapper #blogbody {
     float: left;
-    clear: both;
     width: 600px;
     padding: 0 50px 0 0;
     border-right: 2px dotted #eee;
 }
 
 #blog-wrapper #blogbody h4 {
-    float: left;
-    clear: both;
     font: italic normal 13px/18px Georgia, "Times New Roman", Times, serif, "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
     width: 100%;
     text-align: center;
@@ -168,13 +165,11 @@ h3 a { color: #222; }
 #blog-wrapper #blogbody p {
     line-height: 2.0em;
     margin: 0 0 15px;
-    float: left;
     padding: 10px 0;
     font-size: 1.1em;
 }
 
 #blog-wrapper #blogbody .initial {
-    float: left;
     width: auto;
     clear: none;
     font-size: 100px;
@@ -205,8 +200,6 @@ h3 a { color: #222; }
 
 
 #blog-wrapper #blogbody blockquote {
-    float: left;
-    clear: both;
     width: 475px;
     padding: 0 0 0 10px;
     text-align:justify;
@@ -218,8 +211,6 @@ h3 a { color: #222; }
 }
 
 #blog-wrapper #blogbody .more-articles {
-    float: left;
-    clear: both;
     width: 520px;
     border-top:2px dotted #eee;
     margin: 40px 0 0 0;
@@ -227,13 +218,12 @@ h3 a { color: #222; }
 }
 
 #blog-wrapper #blogbody .more-articles li {
-    float: left;
     width: 520px;
     margin: 10px 0 30px 0;
 }
 
 #blog-wrapper #blogbody .more-articles li.right {
-    float: right;
+/*    float: right; */
 }
 
 #blog-wrapper #blogbody .more-articles li h2 {
@@ -245,8 +235,6 @@ h3 a { color: #222; }
 /* __Comments */
 
 #blog-wrapper #blogbody .comments {
-    float: left;
-    clear: both;
     width: 520px;
     border-top:2px dotted #eee;
     margin: 40px 0 0 0;
@@ -254,7 +242,6 @@ h3 a { color: #222; }
 }
 
 #blog-wrapper #blogbody .comments li {
-    float: left;
     width: 520px;
     margin: 0 0 10px 0;
     padding: 0 0 10px 0;
@@ -277,11 +264,9 @@ h3 a { color: #222; }
     padding: 15px;
     background: #000;
     color: #fff;
-    float: left;
 }
 
 #blog-wrapper #blogbody .comments li.form label, #blog-wrapper #blogbody .comments li.form input, #blog-wrapper #blogbody .comments li.form textarea {
-    float: left;
     clear: both;
     margin: 0 0 5px 0;
     font-family:Arial, Helvetica, sans-serif;
@@ -293,22 +278,16 @@ h3 a { color: #222; }
     border: 5px solid #666;
     padding: 5px;
     width: 200px;
-    float: left;
-    clear: both;
 }
 
 #blog-wrapper #blogbody .comments li.form textarea {
     width: 460px;
-    float: left;
-    clear: both;
 }
 
 #blog-wrapper #blogbody .comments li.form input.button {
     background: #d40000;
     border: 5px solid #d40000;
     padding: 5px;
-    float: left;
-    clear: both;
     cursor: pointer;
     color: #fff;
     margin: 10px 0 0 0;
@@ -332,15 +311,20 @@ h3 a { color: #222; }
     font-size: 25px;
     line-height: 40px;
     margin: 0 0 5px 0;
-    float: left;
 }
 
 #blog-wrapper #blogbody .comments li h3 {
     font-size: 18px;
     font-weight: normal;
     margin: 20px 0 5px 0;
-    float: left;
 }
+
+#blog-wrapper #blogbody pre {
+}
+
+#blog-wrapper #blogbody code {
+}
+
 
 
 /* __ Portfolio */
