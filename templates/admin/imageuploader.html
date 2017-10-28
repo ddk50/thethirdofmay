@@ -1,0 +1,20 @@
+{% extends "layouts/admin.html" %}
+{% block title %}The Third of May 2017{% endblock %}
+{% block content %}
+
+  <div id="content">
+    <form action="/admin/image/upload" class="dropzone needsclick dz-clickable" id="image_upload" enctype="multipart/form-data">
+      <div class="dz-message needsclick">
+        Drop files here or click to upload.<br>
+        <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+      </div>
+    </form>
+
+    <form action="/admin/image/test" method="post" enctype="multipart/form-data">
+      <p><input type="file" name="photo[file]" id="upfile" /></p>
+      <p><input type="submit" name="photo[action]" value="保存" /></p>
+    </form>
+  </div>
+  <!-- <form action="/admin/image/upload" class="dropzone"></form> -->
+
+{% endblock %}

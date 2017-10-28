@@ -8,6 +8,7 @@
            :*application-root*
            :*static-directory*
            :*template-directory*
+           :*image-save-directory*
            :appenv
            :developmentp
            :productionp))
@@ -46,3 +47,11 @@
 
 (defun productionp ()
   (string= (appenv) "production"))
+
+
+;;
+;; アップロードしたファイルをどこに保存するか
+;; 最後にかならず（スラッシュを付けること)
+;;
+(defparameter *image-save-directory* #P"/var/thethirdofmay/images/")
+

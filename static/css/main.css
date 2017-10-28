@@ -319,13 +319,14 @@ h3 a { color: #222; }
     margin: 20px 0 5px 0;
 }
 
-#blog-wrapper #blogbody pre {
-}
 
-#blog-wrapper #blogbody code {
-}
-
-
+#blog-wrapper #blogbody pre code {
+    padding-left: 20px;
+    display: block;
+    font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+    font-size: 12px;
+    line-height: 0.8;
+}   
 
 /* __ Portfolio */
 

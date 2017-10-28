@@ -49,7 +49,7 @@
   (append (get-posts) (list :msg msg)))
 
 ;;
-;; Authorized area
+;; Authorized area (tech blog)
 ;;
 (defroute "/admin/techblog/index" (&key _parsed)
   (let ((plist (get-posts)))
@@ -93,13 +93,28 @@
         (render #P"admin/drafts.html" (drafts-with-msg (format nil "invalid date error ~A" date)))))))
     
 (defroute ("/admin/techblog/:id" :method :GET) (&key id)
-  (render #P"admin/draftedit.html" (find-by-id-from-posts id)))
+  (handler-case 
+      (render #P"admin/draftedit.html" (find-by-id-from-posts (parse-integer id)))
+    (nosuch-article-error (condition)
+      (render #P"admin/drafts.html" (list :msg (format nil "no such article id: ~D" id))))))
+
+;;
+;; Authorized area (画像アップロード)
+;;
+(defroute ("/admin/image/upload" :method :GET) (&rest _parsed)
+  (render #P"admin/imageuploader.html"))
+
+(defroute ("/admin/image/upload" :method :POST) (&rest _parsed)
+  (let ((file (nth 1 (car (getf _parsed :_PARSED))))) ;; これ変な気がするがこうするよりほかない
+    (format t "~S~%" (add-new-photo file))
+    (render #P"admin/imageuploader.html")))
+
+(defroute ("/admin/image/test" :method :POST) (&rest _parsed)
+  (format t "~S~%" _parsed))
 
 ;;
 ;; login
 ;;
-(defroute "/admin/login" (&key _parsed)
-  (render #P"admin/login.html"))
 
 ;;
 ;; Error pages
